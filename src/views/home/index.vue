@@ -23,8 +23,37 @@
         <!-- 文章列表 -->
         <ArticleList :channel="item"></ArticleList>
       </van-tab>
+      <!-- 汉堡按钮定位把列表最后的位置给挡住了，解决办法的就是在这里添加一个占位元素 -->
+      <div class="wap-nav-placeholder" slot="nav-right"></div>
+      <div
+        class="wap-nav-wrap"
+        slot="nav-right"
+        @click="isChannelEditShow = true"
+      >
+        <van-icon name="wap-nav" />
+      </div>
     </van-tabs>
     <!-- /文章频道列表 -->
+    <!-- get-container指定挂载的节点 -->
+    <van-popup
+      v-model="isChannelEditShow"
+      position="bottom"
+      class="channel-edit-popup"
+      closeable
+      close-icon-position="top-left"
+      get-container="body"
+      style="height: 100%"
+    >
+      <!--
+        模板中的 $event 表示事件参数
+       -->
+      <channel-edit
+        :user-channels="channels"
+        :active="active"
+        @close="isChannelEditShow = false"
+        @update-active="active = $event"
+      />
+    </van-popup>
   </div>
 </template>
 
