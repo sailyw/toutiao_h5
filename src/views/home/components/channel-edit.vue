@@ -151,7 +151,6 @@ export default {
         this.$emit("update-active", this.active - 1);
       }
       this.userChannels.splice(index, 1);
-
       // 数据持久化
       if (this.user) {
         // 登录了，持久化到线上
