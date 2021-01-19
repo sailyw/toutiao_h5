@@ -53,7 +53,7 @@
           })
         "
       >
-        <img class="mobile" src="./手机.png" />
+        <img class="mobile" :src="img.sj" />
       </div>
       <div class="text">登录 / 注册</div>
     </div>
@@ -95,6 +95,9 @@ export default {
   data() {
     return {
       currentUser: {}, // 当前登录用户信息
+      img: {
+        sj: require("@/assets/img/sj.png"),
+      },
     };
   },
   computed: {

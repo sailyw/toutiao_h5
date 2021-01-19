@@ -19,11 +19,11 @@ dayjs.locale('zh-cn')
 // 管道符前面的内容会作为参数传递给过滤器函数
 // 过滤器的返回值会渲染到使用过滤器的模板中
 Vue.filter('relativeTime', value => {
-  return dayjs(value).from(dayjs())
+    return dayjs().from(dayjs(value))
 })
 
 Vue.filter('datetime', (value, format = 'YYYY-MM-DD HH:mm:ss') => {
-  return dayjs(value).format(format)
+    return dayjs(value).format(format)
 })
 
 // 例如日期格式化

@@ -2,7 +2,6 @@
  * 用户相关请求模块
  */
 import request from '@/utils/request'
-import store from '@/store/'
 /**
  * 登录/注册
  */

@@ -6,6 +6,7 @@ import store from './store'
 import 'lib-flexible'
 import "./plugins/index";
 import './styles/index.less'
+import './utils/dayjs'
 Vue.config.productionTip = false
 
 new Vue({
