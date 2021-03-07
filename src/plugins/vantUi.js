@@ -41,7 +41,9 @@ import { Swipe, SwipeItem } from 'vant';
 import { DatetimePicker } from 'vant';
 import { Form } from 'vant';
 import { CountDown } from 'vant';
+import { Badge } from 'vant';
 
+Vue.use(Badge);
 Vue.use(CountDown);
 Vue.use(Form);
 Vue.use(DatetimePicker);
