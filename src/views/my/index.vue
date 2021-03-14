@@ -1,7 +1,11 @@
 <template>
   <div class="my-container">
     <van-cell-group v-if="user" class="my-info">
-      <van-cell class="base-info" center :border="false">
+      <van-cell
+        class="base-info"
+        center
+        :border="false"
+      >
         <van-image
           class="avatar"
           slot="icon"
@@ -10,9 +14,12 @@
           :src="currentUser.photo"
         />
         <div class="name" slot="title">{{ currentUser.name }}</div>
-        <van-button class="update-btn" size="small" round to="/user/profile"
-          >编辑资料</van-button
-        >
+        <van-button
+          class="update-btn"
+          size="small"
+          round
+          to="/user/profile"
+        >编辑资料</van-button>
       </van-cell>
       <van-grid class="data-info" :border="false">
         <van-grid-item class="data-info-item">
@@ -43,17 +50,13 @@
     </van-cell-group>
 
     <div v-else class="not-login">
-      <div
-        @click="
-          $router.push({
-            name: 'login',
-            query: {
-              redirect: '/my',
-            },
-          })
-        "
-      >
-        <img class="mobile" :src="img.sj" />
+      <div @click="$router.push({
+        name: 'login',
+        query: {
+          redirect: '/my'
+        }
+      })">
+        <img class="mobile" src="./手机.png">
       </div>
       <div class="text">登录 / 注册</div>
     </div>
@@ -74,7 +77,12 @@
     </van-grid>
 
     <van-cell title="消息通知" is-link to="/" />
-    <van-cell class="mb-4" title="小智同学" is-link to="/user/chat" />
+    <van-cell
+      class="mb-4"
+      title="小智同学"
+      is-link
+      to="/user/chat"
+    />
     <van-cell
       v-if="user"
       class="logout-cell"
@@ -85,59 +93,53 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { getCurrentUser } from "@/api/user";
+import { mapState } from 'vuex'
+import { getCurrentUser } from '@/api/user'
 
 export default {
-  name: "MyIndex",
+  name: 'MyIndex',
   components: {},
   props: {},
-  data() {
+  data () {
     return {
-      currentUser: {}, // 当前登录用户信息
-      img: {
-        sj: require("@/assets/img/sj.png"),
-      },
-    };
-  },
-  computed: {
-    ...mapState(["user"]),
-  },
-  watch: {},
-  created() {},
-  mounted() {},
-  activated() {
-    if (this.user) {
-      console.log("ddd");
-      this.loadCurrentUser();
+      currentUser: {} // 当前登录用户信息
     }
   },
+  computed: {
+    ...mapState(['user'])
+  },
+  watch: {},
+  created () {this.loadCurrentUser()},
+  mounted () {},
+  activated () {
+    // if (this.user) {
+    //   this.loadCurrentUser()
+    // }
+  },
   methods: {
-    async loadCurrentUser() {
-      const { data } = await getCurrentUser();
-      this.currentUser = data.data;
+    async loadCurrentUser () {
+      const { data } = await getCurrentUser()
+      this.currentUser = data.data
+      console.log( data.data);
     },
 
-    onLogout() {
+    onLogout () {
       // 提示用户确认退出
       // 确认 -> 处理退出
-      this.$dialog
-        .confirm({
-          title: "退出提示",
-          message: "确认退出吗？",
-        })
-        .then(() => {
-          // 确认执行这里
+      this.$dialog.confirm({
+        title: '退出提示',
+        message: '确认退出吗？'
+      })
+        .then(() => { // 确认执行这里
           // 清除用户登录状态
-          this.$store.commit("setUser", null);
+          this.$store.commit('setUser', null)
         })
-        .catch(() => {
-          // 退出执行这里
+        .catch(() => { // 退出执行这里
           // on cancel
-        });
-    },
-  },
-};
+        })
+    }
+  }
+}
 </script>
 
 <style scoped lang="less">

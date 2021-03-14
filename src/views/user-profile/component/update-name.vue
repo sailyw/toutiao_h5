@@ -31,14 +31,14 @@ import { updateUserProfile } from "@/api/user";
 export default {
   props: {
     // 声明接收父组件 v-model 传递的 value 数据
-    name: {
+    value: {
       type: String,
       required: true,
     },
   },
   data() {
     return {
-      localName: this.name,
+      localName: this.value,
     };
   },
   methods: {
